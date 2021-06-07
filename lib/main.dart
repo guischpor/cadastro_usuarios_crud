@@ -1,4 +1,4 @@
-import 'package:cadastro_usuarios_crud/pages/home_screen.dart';
+import 'package:cadastro_usuarios_crud/views/user_list.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: UserList(),
       debugShowCheckedModeBanner: false,
     );
   }
