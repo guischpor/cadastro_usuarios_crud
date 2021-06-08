@@ -1,6 +1,8 @@
+import 'package:cadastro_usuarios_crud/models/user.dart';
+import 'package:cadastro_usuarios_crud/provider/users.dart';
 import 'package:cadastro_usuarios_crud/widgets/user_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:cadastro_usuarios_crud/data/dummy.users.dart';
+import 'package:provider/provider.dart';
 
 class UserList extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class UserList extends StatefulWidget {
 class _UserListState extends State<UserList> {
   @override
   Widget build(BuildContext context) {
-    final users = {...DUMMY_USERS};
+    final Users users = Provider.of(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -23,8 +25,8 @@ class _UserListState extends State<UserList> {
           ],
         ),
         body: ListView.builder(
-          itemCount: users.length,
-          itemBuilder: (context, i) => UserTile(users.values.elementAt(i)),
+          itemCount: users.count,
+          itemBuilder: (context, i) => UserTile(users.byIndex(i)),
         ));
   }
 }
