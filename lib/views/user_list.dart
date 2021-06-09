@@ -20,7 +20,9 @@ class _UserListState extends State<UserList> {
           actions: [
             IconButton(
               icon: Icon(Icons.add),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/user-form');
+              },
             ),
           ],
         ),

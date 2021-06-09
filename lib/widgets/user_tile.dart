@@ -11,7 +11,8 @@ class UserTile extends StatelessWidget {
     final avatar = user.avatarUrl == null || user.avatarUrl.isEmpty
         ? CircleAvatar(child: Icon(Icons.person))
         : CircleAvatar(
-            backgroundImage: AssetImage(user.avatarUrl),
+            //backgroundImage: AssetImage(user.avatarUrl),
+            backgroundImage: NetworkImage(user.avatarUrl),
           );
 
     return Card(
@@ -28,7 +29,13 @@ class UserTile extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.edit),
                 color: Colors.orange[900],
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/user-form',
+                    arguments: user,
+                  );
+                },
               ),
               IconButton(
                 icon: Icon(Icons.delete),
