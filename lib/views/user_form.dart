@@ -12,8 +12,21 @@ class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
+  //metodo que carrega as informações da lista e preenche os CAMPOS com os dados para alteração
+  void _loadFormData(User user) {
+    if (user != null) {
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final User user = ModalRoute.of(context).settings.arguments;
+    _loadFormData(user);
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Formulário de Usuário'),
@@ -49,6 +62,7 @@ class _UserFormState extends State<UserForm> {
                     decoration: InputDecoration(
                       labelText: 'Nome',
                     ),
+                    initialValue: _formData['name'],
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
                         return 'Informe o seu nome completo';
@@ -66,6 +80,7 @@ class _UserFormState extends State<UserForm> {
                     decoration: InputDecoration(
                       labelText: 'Email',
                     ),
+                    initialValue: _formData['email'],
                     validator: (value) {
                       if (value == null ||
                           value.trim().isEmpty ||
@@ -81,8 +96,9 @@ class _UserFormState extends State<UserForm> {
                     decoration: InputDecoration(
                       labelText: 'URL do Avatar',
                     ),
+                    initialValue: _formData['avatarUrl'],
                     validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
+                      if (value == null) {
                         return 'Informe a URL da sua foto de perfil!';
                       }
 
